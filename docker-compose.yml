@@ -1,13 +1,19 @@
 version: "3.8"
 services:
   db:
-    image: 'postgres'
+    image: 'postgres:14.2'
+    hostname: postgres-dev
     ports:
       - '5432:5432'
     volumes:
       - data:/var/lib/postgresql/data
     env_file:
-      - ./postgres.dev.env
+      - ./postgres-dev.env
+
+networks:
+  default:
+    external:
+      name: notification-system-network
 
 volumes:
   data:
